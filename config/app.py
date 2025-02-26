@@ -1,5 +1,5 @@
 import streamlit as st
-from preprocessing_data import PreprocessingData
+# from preprocessing_data import PreprocessingData
 
 def main():
     st.title("📈 Stock Market Prediction News")
@@ -20,9 +20,9 @@ def main():
     st.sidebar.write("📊 Stock trends")
     st.sidebar.write("📉 Market sentiment")
 
-    preprocessing_data = PreprocessingData()
-    preprocessing_data.read_data()
-    preprocessing_data.save_data()
+    # preprocessing_data = PreprocessingData()
+    # preprocessing_data.read_data()
+    # preprocessing_data.save_data()
 
 if __name__ == "__main__":
     main()
