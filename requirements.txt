@@ -3,3 +3,7 @@ scikit-learn == 1.6.1
 nltk == 3.9.1
 streamlit == 1.35.0
 imbalanced-learn == 0.12.1
+xgboost == 1.7.6
+tensorflow == 2.14.0
+transformers == 4.35.2
+torch == 2.1.0
