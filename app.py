@@ -1,6 +1,7 @@
 import streamlit as st
 # from preprocessing_data import PreprocessingData
 from src.models.train_model import TrainModel
+from src.models.build_models.KNN import KNN
 
 
 def main():
@@ -22,8 +23,7 @@ def main():
     st.sidebar.write("📊 Stock trends")
     st.sidebar.write("📉 Market sentiment")
 
-    trainModel = TrainModel()
-    st.title(trainModel.split_data())
+    st.title(KNN())
    
     # preprocessing_data = PreprocessingData()
     # preprocessing_data.read_data()
