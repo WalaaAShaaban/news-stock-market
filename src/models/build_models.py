@@ -1,6 +1,5 @@
 
 from src.models.train_model import TrainModel
-from src.models.build_models.LogisticRegression import LogisticRegression
 from src.models.build_models.KNN import KNN
 
 class BuildModels:

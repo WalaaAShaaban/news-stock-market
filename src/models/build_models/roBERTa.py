@@ -1,7 +1,8 @@
 from transformers import AutoTokenizer, RobertaModel, Trainer, TrainingArguments, pipeline
 from datasets import Dataset
-import torch
 import pandas as pd 
+import mlflow
+import mlflow.pytorch
 
 class RoBERTa:
 
@@ -51,6 +52,13 @@ class RoBERTa:
 
         # Step 8: Fine-tune the model
         trainer.train()
+        mlflow.set_tracking_uri("http://127.0.0.1:5000")  # Use MLflow server or local
+        mlflow.set_experiment("RoBERTa Sentiment Analysis")
+        # Train and log with MLflow
+        with mlflow.start_run():
+            mlflow.log_params(vars(training_args))  # Log training parameters
+            trainer.train()
+            mlflow.pytorch.log_model(model, "roberta_model")  # Save model in MLflow
 
         # Step 10: Save the fine-tuned model and tokenizer
         model.save_pretrained("./roberta_finetuned")
@@ -59,11 +67,12 @@ class RoBERTa:
 
 
     def predict(self):
-        # Load the fine-tuned model and tokenizer for inference
-        classifier = pipeline("text-classification", model="./roberta_finetuned", tokenizer="./roberta_finetuned")
-                # Test the model on new data
+        
+        # Load the fine-tuned model from MLflow
+        model_path = "roberta_model"
+        loaded_model = mlflow.pytorch.load_model(model_path)
         text = "This movie was amazing! The story was fantastic and the actors did a great job."
-        result = classifier(text)
+        result = loaded_model(text)
 
         print(result)  # Output: [{'label': 'POSITIVE', 'score': 0.99}]
 
