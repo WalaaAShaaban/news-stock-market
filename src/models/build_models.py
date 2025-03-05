@@ -1,17 +1,17 @@
 
+# Logistic Regression
+from src.models.build_models.logisticRegression import LogisticRegressionModel
 from src.models.train_model import TrainModel
-from src.models.build_models.KNN import KNN
-
-class BuildModels:
-
+class BuildModles:
     def __init__(self):
-        self.train_model = TrainModel()
-        self.train_model.split_data()
-        self.X_train, self.y_train = self.train_model.get_train_data()
-        self.X_test, self.y_test = self.train_model.get_test_data()
-
-    def build_models(self):
-        self.KNN = KNN()
-        self.KNN.fit(self.X_train, self.y_train)
-        
+        pass
+    
+    def build_model(self):
+        trainModel = TrainModel()
+        trainModel.split_data()
+        X_train, y_train = trainModel.get_train_data()
+        X_test, y_test = trainModel.get_test_data()
+        logisticRegressionModel = LogisticRegressionModel()
+        logisticRegressionModel.fit(X_train, y_train)
+        logisticRegressionModel.evaluate(X_test, y_test)
 

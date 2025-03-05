@@ -1,7 +1,7 @@
 import streamlit as st
 from preprocessing_data import PreprocessingData
 from src.models.train_model import TrainModel
-from src.models.build_models.KNN import KNN
+from src.models.build_models.build_models import BuildModles
 
 def main():
     st.title("📈 Stock Market Prediction News")
@@ -26,10 +26,8 @@ def main():
     preprocessing_data.read_data()
     preprocessing_data.save_data()
 
-
-    train_model = TrainModel()
-    train_model.split_data()
-    st.write("Data split successfully!")
-    st.write(KNN())
+    buildModels =  BuildModles()
+    buildModels.build_model()
+    
 if __name__ == "__main__":
     main()
